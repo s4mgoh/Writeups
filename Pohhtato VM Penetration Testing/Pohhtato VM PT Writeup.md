@@ -13,3 +13,8 @@ Ensuring that my Kali Linux (Attacking Machine) & the Pohhtato VM (Target Machin
 
 ## Step 2
 Powering on Pohhtato VM shows us that it is using Debian, and two user accounts are available for usage, **cabbage** & **potato-helpdesk**.
+(Debian_Login_Page.png)
+
+**Cyber Kill Chain = Reconnaissance --> Weaponization --> Delivery --> Exploitation --> Installation --> Command & Control (C2) --> Actions on Objectives**
+
+While I won't be implementing all the steps in the Cyber Kill Chain, I will be following the general flow which leads us to **RECONNAISSANCE**.
