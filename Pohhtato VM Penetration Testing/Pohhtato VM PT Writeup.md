@@ -95,4 +95,11 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
 6) Since there aren't any vulnerabilities in the output of the scan, I decided to use a web browser ([Mozilla](https://github.com/mozilla)) & access the website of the Pohhtato VM since we saw that both HTTP & HTTPS ports were open alongside the word "Apache", by typing the IP address of the Pohhtato VM in the URL bar `192.168.233.135`:
 
-   
+   ![HTTP_192.168.233.135_Access](Images/HTTP_192.168.233.135_Access.png)
+
+7) Access the website using HTTP doesn't seem to work & it gives the word "Forbidden", which is HTTP response code 403. Since I am unable to access the webpage via HTTP, I decided to add HTTPS:// at the front of the IP address when typing it into the URL bar `https://192.168.233.135`:
+
+   ![HTTPS_192.168.233.135_Invalid_Security_Certificate](Images/HTTPS_192.168.233.135_Invalid_Security_Certificate.png)
+   ![HTTPS_192.168.233.135_Access](Images/HTTPS_192.168.233.135_Access.png)
+
+8) 
