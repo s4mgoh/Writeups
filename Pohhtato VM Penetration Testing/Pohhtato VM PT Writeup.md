@@ -25,17 +25,74 @@ While I won't be implementing all the steps in the Cyber Kill Chain, I will be f
 
 I will start by using [Metasploit Framework](https://github.com/rapid7/metasploit-framework) so that I can automatically have the output of my [NMAP](https://github.com/nmap/nmap) scans saved into the database.
 
-1) Creating my Pohhtato Workspace in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `workspace add Pohhtato`
-2) Navigating to my Pohhtato Workspace in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `workspace Pohhtato`
+1) Creating my Pohhtato Workspace in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `workspace add Pohhtato`.
+2) Navigating to my Pohhtato Workspace in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `workspace Pohhtato`.
 3) Identifying the IP address of the Pohhtato VM by scanning the network `ip a` followed by `nmap 192.168.233.0/24`, which gave the following result:
 
    ```
    Nmap scan report for potatos.potato-school.com (192.168.233.135)
    Host is up (0.0011s latency).
-   Not shown: 997 filtered tcp ports (no-response)
+   Not shown: 998 filtered tcp ports (no-response)
    PORT    STATE SERVICE
-   21/tcp  open  ftp
    80/tcp  open  http
    443/tcp open  https
    MAC Address: 00:0C:29:50:FC:48 (VMware)
    ```
+   
+4) Further reconnaissance with [NMAP](https://github.com/nmap/nmap)'s aggressive scan (-A) & [Vulscan](https://github.com/scipag/vulscan)'s NSE script in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `db_nmap -A --script=vulscan 192.168.233.135`, which gave the following result when accessing it in the database `services`:
+
+   ```
+   Services
+   ========
+
+   host             port  proto  name      state  info
+   ----             ----  -----  ----      -----  ----
+   192.168.233.135  80    tcp    http      open   Apache httpd 2.4.62
+   192.168.233.135  443   tcp    ssl/http  open   Apache httpd 2.4.62 (Debian)
+   ```
+
+5) Checking the output of the scan shows that there aren't any vulnerabilities:
+
+   ```
+   [*] Nmap: PORT    STATE SERVICE  REASON         VERSION
+   [*] Nmap: 80/tcp  open  http     syn-ack ttl 64 Apache httpd 2.4.62
+   [*] Nmap: |_http-server-header: Apache/2.4.62 (Debian)
+   [*] Nmap: | /usr/share/nmap/scripts/vulscan: VulDB - https://vuldb.com:
+   [*] Nmap: | No findings
+   [*] Nmap: | MITRE CVE - https://cve.mitre.org:
+   [*] Nmap: | No findings
+   [*] Nmap: | SecurityFocus - https://www.securityfocus.com/bid/:
+   [*] Nmap: | No findings
+   [*] Nmap: | IBM X-Force - https://exchange.xforce.ibmcloud.com:
+   [*] Nmap: | No findings
+   [*] Nmap: | Exploit-DB - https://www.exploit-db.com:
+   [*] Nmap: | No findings
+   [*] Nmap: | OpenVAS (Nessus) - http://www.openvas.org:
+   [*] Nmap: | No findings
+   [*] Nmap: | SecurityTracker - https://www.securitytracker.com:
+   [*] Nmap: | No findings
+   [*] Nmap: | OSVDB - http://www.osvdb.org:
+   [*] Nmap: | No findings
+   [*] Nmap: 443/tcp open  ssl/http syn-ack ttl 64 Apache httpd 2.4.62 ((Debian))
+   [*] Nmap: |_http-server-header: Apache/2.4.62 (Debian)
+   [*] Nmap: | /usr/share/nmap/scripts/vulscan: VulDB - https://vuldb.com:
+   [*] Nmap: | No findings
+   [*] Nmap: | MITRE CVE - https://cve.mitre.org:
+   [*] Nmap: | No findings
+   [*] Nmap: | SecurityFocus - https://www.securityfocus.com/bid/:
+   [*] Nmap: | No findings
+   [*] Nmap: | IBM X-Force - https://exchange.xforce.ibmcloud.com:
+   [*] Nmap: | No findings
+   [*] Nmap: | Exploit-DB - https://www.exploit-db.com:
+   [*] Nmap: | No findings
+   [*] Nmap: | OpenVAS (Nessus) - http://www.openvas.org:
+   [*] Nmap: | No findings
+   [*] Nmap: | SecurityTracker - https://www.securitytracker.com:
+   [*] Nmap: | No findings
+   [*] Nmap: | OSVDB - http://www.osvdb.org:
+   [*] Nmap: | No findings
+   ```
+
+6) Since there aren't any vulnerabilities in the output of the scan, I decided to use a web browser ([Mozilla](https://github.com/mozilla)) & access the website of the Pohhtato VM since we say that both HTTP & HTTPS ports were open alongside the word "Apache", by typing the IP address of the Pohhtato VM in the URL bar `http://192.168.233.135`:
+
+   
