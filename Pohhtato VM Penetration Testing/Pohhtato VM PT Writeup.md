@@ -101,7 +101,7 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
    ![HTTPS_192.168.233.135_Invalid_Security_Certificate](Images/HTTPS_192.168.233.135_Invalid_Security_Certificate.png)
 
-8) Seeing the Invalid Security Certificate popup reminded me of a task in [TryHackMe Advent of Cyber 2024](https://tryhackme.com/christmas/) regarding Certificate Mismanagement. Further exploration showed that the Common Name & Issuer of the certificate was *potatos.potato-school.com*. When attempting to access the website *potatos.potato-school.com*, it failed because the system isn't resolving *potatos.potato-school.com* to *192.168.233.135*. In order to change that, I used the following commands: `sudo su` &`echo "192.168.233.135 potatos.potato-school.com"`, which then allowed me to access the website.
+8) Seeing the Invalid Security Certificate popup reminded me of a task in [TryHackMe Advent of Cyber 2024](https://tryhackme.com/christmas/) regarding Certificate Mismanagement. Further exploration showed that the Common Name & Issuer of the certificate was *potatos.potato-school.com*. When attempting to access the website *potatos.potato-school.com*, it failed because the system isn't resolving *potatos.potato-school.com* to *192.168.233.135*. In order to change that, I used the following commands: `sudo su` &`echo "192.168.233.135 potatos.potato-school.com >> /etc/hosts"`, which then allowed me to access the website.
 
    ![Invalid_Security_Certificate_Detail](Images/Invalid_Security_Certificate_Detail.png)
 
