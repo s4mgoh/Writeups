@@ -13,11 +13,11 @@ I will be using [Kali Linux](https://www.kali.org/) on [VMware Workstation Pro](
 Ensuring that my [Kali Linux](https://www.kali.org/) (Attacking Machine) & the Pohhtato VM (Target Machine) are on the same network.
 
 ## Step 2 (Reconnaissance)
-Powering on Pohhtato VM shows us that it is using Debian, and two user accounts are available for usage, **cabbage** & **potato-helpdesk**.
+Powering on Pohhtato VM shows us that it is using Debian, and two user accounts are available for usage, *cabbage* & *potato-helpdesk*.
 
 ![Debian_Login_Page](Images/Debian_Login_Page.png)
 
-**Cyber Kill Chain = Reconnaissance --> Weaponization --> Delivery --> Exploitation --> Installation --> Command & Control (C2) --> Actions on Objectives**
+*Cyber Kill Chain = Reconnaissance --> Weaponization --> Delivery --> Exploitation --> Installation --> Command & Control (C2) --> Actions on Objectives*
 
 While I won't be implementing all the steps in the Cyber Kill Chain, I will be following the general flow which first leads us to **RECONNAISSANCE**.
 
@@ -100,6 +100,18 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 7) Access the website using HTTP doesn't seem to work & it gives the word "Forbidden", which is HTTP response code 403. Since I am unable to access the webpage via HTTP, I decided to add HTTPS:// at the front of the IP address when typing it into the URL bar `https://192.168.233.135`:
 
    ![HTTPS_192.168.233.135_Invalid_Security_Certificate](Images/HTTPS_192.168.233.135_Invalid_Security_Certificate.png)
-   ![HTTPS_192.168.233.135_Access](Images/HTTPS_192.168.233.135_Access.png)
 
-8) 
+8) Seeing the Invalid Security Certificate popup reminded me of a task in [TryHackMe Advent of Cyber 2024](https://tryhackme.com/christmas/) regarding Certificate Mismanagement. Further exploration showed that the Common Name & Issuer of the certificate was *potatos.potato-school.com*. When attempting to access the website *potatos.potato-school.com*, it failed because the system isn't resolving *potatos.potato-school.com* to *192.168.233.135*. In order to change that, I used the following commands: `sudo su` &`echo "192.168.233.135 potatos.potato-school.com"`, which then allowed me to access the website.
+
+   ![Invalid_Security_Certificate_Detail](Images/Invalid_Security_Certificate_Detail.png)
+
+   ```
+   ┌──(ctf)─(kali㉿kali)-[~]
+   └─$ sudo su
+   ┌──(root㉿kali)-[/home/kali]
+   └─# echo "192.168.233.135 potatos.potato-school.com" >> /etc/hosts
+   ```
+
+   ![HTTPS_potatos.potato-school.com_ACCESS](Images/HTTPS_potatos.potato-school.com_ACCESS.png)
+   
+9) 
