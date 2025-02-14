@@ -2,3 +2,14 @@
 
 Credits to my seniors at Custodio Technologies who created the VM (Charles & W.L.)
 
+VM file link: https://drive.google.com/file/d/
+
+_Note: This is my first time, bare with me please._
+
+I will be using Kali Linux on VMware Workstation Pro as my Virtualization Software.
+
+## Step 1
+Ensuring that my Kali Linux (Attacking Machine) & the Pohhtato VM (Target Machine) are on the same network.
+
+## Step 2
+Powering on Pohhtato VM shows us that it is using Debian, and two user accounts are available for usage, **cabbage** & **potato-helpdesk**.
