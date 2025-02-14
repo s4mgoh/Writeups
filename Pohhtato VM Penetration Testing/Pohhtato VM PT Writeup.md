@@ -27,8 +27,15 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
 1) Creating my Pohhtato Workspace in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `workspace add Pohhtato`
 2) Navigating to my Pohhtato Workspace in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `workspace Pohhtato`
-3) Identifying the IP address of the Pohhtato VM by scanning the network `db_nmap 192.168.233.135`, which gave the following result:
+3) Identifying the IP address of the Pohhtato VM by scanning the network `ip a` followed by `nmap 192.168.233.0/24`, which gave the following result:
 
    ```
-   
+   Nmap scan report for potatos.potato-school.com (192.168.233.135)
+   Host is up (0.0011s latency).
+   Not shown: 997 filtered tcp ports (no-response)
+   PORT    STATE SERVICE
+   21/tcp  open  ftp
+   80/tcp  open  http
+   443/tcp open  https
+   MAC Address: 00:0C:29:50:FC:48 (VMware)
    ```
