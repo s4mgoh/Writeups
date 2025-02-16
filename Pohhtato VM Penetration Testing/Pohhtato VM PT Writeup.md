@@ -1,4 +1,4 @@
-# Pohhtato Virtual Machine (VM) Penetration Testing (PT)
+![image](https://github.com/user-attachments/assets/0e848971-9fdd-4268-b3d3-d7706e2a2425)# Pohhtato Virtual Machine (VM) Penetration Testing (PT)
 
 Huge Thanks & Credits to my seniors at [Custodio Technologies](https://www.custodiotech.com.sg/) who created the VM (Charles & W.L)
 
@@ -123,6 +123,9 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
    ![Dirbuster_Application_Scan_Result](Images/Dirbuster_Application_Scan_Result.png)
 
-12) 
+12) Since we can see that `/login.php` gave a HTTP response code of 200, I decided to access the page which showed a simple `Student Login` page. Since the webpage showed a simple login page, I decided to use a simple attack method: [SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection), and inserted `" OR 1 = 1 #` into the `Name` field & a random character in the `Password` field.
 
-   
+   ![HTTPS_potatos.potato-school.com_login.php](Images/HTTPS_potatos.potato-school.com_login.php.png)
+   ![HTTPS_potatos.potato-school.com_Student_Login_SQL_Injection_Success](Images/HTTPS_potatos.potato-school.com_Student_Login_SQL_Injection_Success.png)
+
+13) 
