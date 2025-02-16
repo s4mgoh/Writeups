@@ -123,7 +123,7 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
    ![Dirbuster_Application_Scan_Result](Images/Dirbuster_Application_Scan_Result.png)
 
-12) Since we can see that `/login.php` gave a HTTP response code of 200, I decided to access the page which showed a simple `Student Login` page. Since the webpage showed a simple login page, I decided to use a simple attack method: [SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection), and inserted `" OR 1 = 1 #` into the `Name` field & a random character in the `Password` field.
+12) Since we can see that `/login.php` gave a HTTP response code of 200, I decided to access the page which showed a simple `Student Login` page. Since the webpage showed a simple login page, I decided to use a simple attack method: [SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection), and inserted `' OR 1 = 1 #` into the `Name` field & a random character in the `Password` field.
 
    ![HTTPS_potatos.potato-school.com_login.php](Images/HTTPS_potatos.potato-school.com_login.php.png)
 
