@@ -113,6 +113,12 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
    └─# echo "192.168.233.135 potatos.potato-school.com" >> /etc/hosts
    ```
 
-   ![HTTPS_potatos.potato-school.com_ACCESS](Images/HTTPS_potatos.potato-school.com_ACCESS.png)
+   ![HTTPS_potatos.potato-school.com_ACCESS](Images/HTTPS_potatos.potato-sch  ool.com_ACCESS.png)
    
-10) 
+10) Since the webpage seems to be normal & we knew that only 2 ports were open, I decided to try Directory Brute-forcing using the application [Dirbuster](https://www.kali.org/tools/dirbuster/). First, I filled in the type `https://potatos.potato-school.com` in the _Target URL_ field, ticked the checkbox _Go Faster_, used the wordlist _/usr/share/wordlists/Discovery/Web-Content/common.txt_, and pressed `Start`.
+
+   ![Dirbuster Application Interface](Images/Dirbuster_Application_Interface.png)
+   
+11) Upon completion of the brute-force, we received the following results:
+
+   
