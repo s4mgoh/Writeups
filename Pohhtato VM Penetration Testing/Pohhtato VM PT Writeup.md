@@ -121,7 +121,7 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
    
 11) Upon completion of the brute-force, we received the following results when navigating to the `Results - List View: Dirs: XX Files: XX`, we can see the followwing directories & files that gave a HTTP response code of 200: The root directory `/` & the file `/login.php`.
 
-   ![Dirbuster_Application_Scan_Result](/Images/Dirbuster_Application_Scan_Result.png)
+   ![Dirbuster_Application_Scan_Result](Images/Dirbuster_Application_Scan_Result.png)
 
 12) 
 
