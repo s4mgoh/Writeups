@@ -133,11 +133,11 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
 13) With the successful [SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection), we can see that we are logged in as `Malcolm`, with his personal data such as his class `CY2304U` & email `malcolm@potato-school.com`. Also, we can see various learning resources but are unable to access them (We will keep them in mind for now):
 
-    `Chapter 1: SQL Map`
-    `Chapter 2: Local File Inclusion`
-    `Chapter 3: Command Injection`
-    `Chapter 4: Privilege Escalation`
-    `Chapter 5: Port Knocking`
+    - `Chapter 1: SQL Map`
+    - `Chapter 2: Local File Inclusion`
+    - `Chapter 3: Command Injection`
+    - `Chapter 4: Privilege Escalation`
+    - `Chapter 5: Port Knocking`
 
     Lastly, we can see a hyperlink in the webpage `Roundcube Webmail`, which opens a web mail application.
 
