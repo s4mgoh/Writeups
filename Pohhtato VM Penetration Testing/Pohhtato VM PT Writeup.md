@@ -51,7 +51,11 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
    192.168.233.135  443   tcp    ssl/http  open   Apache httpd 2.4.62 (Debian)
    ```
 
-5) Checking the output of the scan shows that there aren't any vulnerabilities:
+   The raw output from the aggressive [NMAP](https://github.com/nmap/nmap) scan:
+
+   [Raw_Output_NMAP_Aggressive_Scan](Images/Raw_Output_NMAP_Aggressive_Scan.png)
+
+6) Checking the output of the scan shows that there aren't any vulnerabilities:
 
    ```
    [*] Nmap: PORT    STATE SERVICE  REASON         VERSION
@@ -93,15 +97,15 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
    [*] Nmap: | No findings
    ```
 
-6) Since there aren't any vulnerabilities in the output of the scan, I decided to use a web browser ([Mozilla](https://github.com/mozilla)) & access the website of the Pohhtato VM since we saw that both HTTP & HTTPS ports were open alongside the word "Apache", by typing the IP address of the Pohhtato VM in the URL bar `192.168.233.135`:
+7) Since there aren't any vulnerabilities in the output of the scan, I decided to use a web browser ([Mozilla](https://github.com/mozilla)) & access the website of the Pohhtato VM since we saw that both HTTP & HTTPS ports were open alongside the word "Apache", by typing the IP address of the Pohhtato VM in the URL bar `192.168.233.135`:
 
    ![HTTP_192.168.233.135_Access](Images/HTTP_192.168.233.135_Access.png)
 
-7) Access the website using HTTP doesn't seem to work & it gives the word "Forbidden", which is HTTP response code 403. Since I am unable to access the webpage via HTTP, I decided to add HTTPS:// at the front of the IP address when typing it into the URL bar `https://192.168.233.135`:
+8) Access the website using HTTP doesn't seem to work & it gives the word "Forbidden", which is HTTP response code 403. Since I am unable to access the webpage via HTTP, I decided to add HTTPS:// at the front of the IP address when typing it into the URL bar `https://192.168.233.135`:
 
    ![HTTPS_192.168.233.135_Invalid_Security_Certificate](Images/HTTPS_192.168.233.135_Invalid_Security_Certificate.png)
 
-8) Seeing the Invalid Security Certificate popup reminded me of a task in [TryHackMe Advent of Cyber 2024](https://tryhackme.com/christmas/) regarding Certificate Mismanagement. Further exploration showed that the Common Name & Issuer of the certificate was ***potatos.potato-school.com***. When attempting to access the website ***potatos.potato-school.com***, it failed because the system isn't resolving ***potatos.potato-school.com*** to ***192.168.233.135***. In order to change that, I used the following commands: `sudo su` &`echo "192.168.233.135 potatos.potato-school.com >> /etc/hosts"`, which then allowed me to access the website.
+9) Seeing the Invalid Security Certificate popup reminded me of a task in [TryHackMe Advent of Cyber 2024](https://tryhackme.com/christmas/) regarding Certificate Mismanagement. Further exploration showed that the Common Name & Issuer of the certificate was ***potatos.potato-school.com***. When attempting to access the website ***potatos.potato-school.com***, it failed because the system isn't resolving ***potatos.potato-school.com*** to ***192.168.233.135***. In order to change that, I used the following commands: `sudo su` &`echo "192.168.233.135 potatos.potato-school.com >> /etc/hosts"`, which then allowed me to access the website.
 
    ![Invalid_Security_Certificate_Detail](Images/Invalid_Security_Certificate_Detail.png)
    ![Server_Not_Found](Images/Server_Not_Found.png)
@@ -113,7 +117,7 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
    └─# echo "192.168.233.135 potatos.potato-school.com" >> /etc/hosts
    ```
 
-   ![HTTPS_potatos.potato-school.com_ACCESS](Images/HTTPS_potatos.potato-sch  ool.com_ACCESS.png)
+   ![HTTPS_potatos.potato-school.com_ACCESS](Images/HTTPS_potatos.potato-school.com_ACCESS.png)
    
 10) Since the webpage seems to be normal & we knew that only 2 ports were open, I decided to try Directory Brute-forcing using the application [Dirbuster](https://www.kali.org/tools/dirbuster/). First, I filled in the type `https://potatos.potato-school.com` in the _Target URL_ field, ticked the checkbox _Go Faster_, used the wordlist _/usr/share/wordlists/Discovery/Web-Content/common.txt_, and pressed `Start`.
 
