@@ -139,8 +139,10 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
     - `Chapter 4: Privilege Escalation`
     - `Chapter 5: Port Knocking`
 
-    Lastly, we can see a hyperlink in the webpage `Roundcube Webmail`, which opens a web mail application.
+   Lastly, we can see a hyperlink in the webpage `Roundcube Webmail`, which opens a web mail application.
 
-    ![Roundcube_Webmail_Login_Page](Images/Roundcube_Webmail_Login_Page.png)
+   ![Roundcube_Webmail_Login_Page](Images/Roundcube_Webmail_Login_Page.png)
+
+   Since I managed to access `Malcolm`'s account, but am unable to access any accounts with invalid credentials, I assumed that there could be a database in the backend.
 
 14) 
