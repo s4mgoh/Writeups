@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/0e848971-9fdd-4268-b3d3-d7706e2a2425)# Pohhtato Virtual Machine (VM) Penetration Testing (PT)
+# Pohhtato Virtual Machine (VM) Penetration Testing (PT)
 
 Huge Thanks & Credits to my seniors at [Custodio Technologies](https://www.custodiotech.com.sg/) who created the VM (Charles & W.L)
 
