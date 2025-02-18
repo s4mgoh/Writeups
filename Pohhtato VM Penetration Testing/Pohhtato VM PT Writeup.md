@@ -201,7 +201,7 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
     In the password column, we can see a string of random characters which seems to be hashes. Using [Crackstation](https://crackstation.net), we recieved the output of the cracked hash for eunchae which is _manchae_.
 
-    [Eunchae_Crackstation_Cracked_Hash](Images/Eunchae_Crackstation_Cracked_Hash.png)
+    ![Eunchae_Crackstation_Cracked_Hash](Images/Eunchae_Crackstation_Cracked_Hash.png)
 
     Now that I have the password of Eunchae's account, I attempted to login into RoundCube Webmail with Eunchae credentials.
 
