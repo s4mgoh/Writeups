@@ -54,7 +54,7 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
    The raw output from the aggressive [NMAP](https://github.com/nmap/nmap) scan shows that a `/robots.txt` file & `/briefingnotes.txt` file exist:
 
    ```
-   Nmap scan report for potatos.potato-school.com (192.168.233.137)
+   Nmap scan report for potatos.potato-school.com (192.168.233.135)
    Host is up (0.0018s latency).
    Not shown: 998 filtered tcp ports (no-response)
    PORT    STATE SERVICE  VERSION
@@ -126,14 +126,6 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
    ![Invalid_Security_Certificate_Detail](Images/Invalid_Security_Certificate_Detail.png)
    ![Server_Not_Found](Images/Server_Not_Found.png)
-
-   ```
-   ┌──(ctf)─(kali㉿kali)-[~]
-   └─$ sudo su
-   ┌──(root㉿kali)-[/home/kali]
-   └─# echo "192.168.233.135 potatos.potato-school.com" >> /etc/hosts
-   ```
-
    ![HTTPS_potatos.potato-school.com_ACCESS](Images/HTTPS_potatos.potato-school.com_ACCESS.png)
 
    Previously, I found the `/robots.txt` file & `/briefingnotes.txt` file, which I can attempt to access to see what information is there:
@@ -183,4 +175,6 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
    Since I managed to access `Malcolm`'s account, but am unable to access any accounts with invalid credentials, I assumed that there could be a database in the backend.
 
-14) 
+14) Using [SQLMap](https://github.com/sqlmapproject/sqlmap) to enumerate data from the database, I received the following output:
+
+   ![SQLMap_Output_1](Images/SQLMap_Output_1.png)
