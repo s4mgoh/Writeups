@@ -212,4 +212,11 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
     If we recall previously, it was stated in the `/briefingnotes.txt` that the password for a file is the school's anniversary date in DD/MM/YYYY format. With the email, we can deduce that the school's anniversary date is _12/11/2006_.
 
-18) 
+18) Opening the link stated in Eunchae's inbox `https://potatos.potato-school.com/new_dashboard/login.php` brings us to login page. As the email stated, all user accounts (students, most likely) had their password reset to `P@$$w0rd`, attempting to login with `Eunchae` as the username & `P@$$w0rd` was successful and allowed us to navigate through the new dashboard, upon changing the password, which I changed to `manchae`.
+
+    ![New_Dashboard_Login.php](Images/New_Dashboard_Login.php.png)
+    ![New_Dashboard_Login.pup_Eunchae_Success](Images/New_Dashboard_Login.pup_Eunchae_Success.png)
+
+    Exploring the various sections, tabs, and buttons in the new dashboard, the one that stood out the most was `Retrieve User Data`. Clicking on `Retrieve User Data` showed that the URL changed to `https://potatos.potato-school.com/new_dashboard/index.php?data_path=%2Feunchae%2Feunchae_data`. In the URL, the path as to which the data is obtained from was stated, which brought to my mind the attack known as [Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal).
+
+20) 
