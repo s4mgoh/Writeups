@@ -323,4 +323,6 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
     As port 21 (ftp) is open, the [Port Knocking](https://wiki.archlinux.org/title/Port_knocking) was a success.
 
-22) Since the ftp port is open, I decided to try to access the Pootato VM via the ftp port. Howevever, attempts to login via ftp with the student credentials obtained from the output of [SQLMap](https://github.com/sqlmapproject/sqlmap) was unsuccessful, I decided to find other ways to login via ftp. Searching online, 
+22) Since the ftp port is open, I decided to try to access the Pootato VM via the ftp port. Howevever, attempts to login via ftp with the student credentials obtained from the output of [SQLMap](https://github.com/sqlmapproject/sqlmap) was unsuccessful, I decided to find other ways to login via ftp. Searching online, I found out that it might be possible to log into the ftp server as an `anonymous` user, which I attempted to do so & gained access.
+
+    
