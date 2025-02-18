@@ -51,9 +51,26 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
    192.168.233.135  443   tcp    ssl/http  open   Apache httpd 2.4.62 (Debian)
    ```
 
-   The raw output from the aggressive [NMAP](https://github.com/nmap/nmap) scan:
+   The raw output from the aggressive [NMAP](https://github.com/nmap/nmap) scan shows that a `/robots.txt` file & `/briefingnotes.txt` file exist:
 
-   [Raw_Output_NMAP_Aggressive_Scan](Images/Raw_Output_NMAP_Aggressive_Scan.png)
+   ```
+   Nmap scan report for potatos.potato-school.com (192.168.233.137)
+   Host is up (0.0018s latency).
+   Not shown: 998 filtered tcp ports (no-response)
+   PORT    STATE SERVICE  VERSION
+   80/tcp  open  http     Apache httpd 2.4.62
+   |_http-server-header: Apache/2.4.62 (Debian)
+   |_http-title: Apache2 Debian Default Page: It works
+   | http-robots.txt: 1 disallowed entry 
+   |_/briefingnotes.txt
+   443/tcp open  ssl/http Apache httpd 2.4.62 ((Debian))
+   | http-robots.txt: 1 disallowed entry 
+   |_/briefingnotes.txt
+   | ssl-cert: Subject: commonName=potatos.potato-school.com
+   | Not valid before: 2024-11-05T05:41:58
+   |_Not valid after:  2034-11-03T05:41:58
+   |_http-server-header: Apache/2.4.62 (Debian)
+   ```
 
 6) Checking the output of the scan shows that there aren't any vulnerabilities:
 
@@ -118,8 +135,17 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
    ```
 
    ![HTTPS_potatos.potato-school.com_ACCESS](Images/HTTPS_potatos.potato-school.com_ACCESS.png)
+
+   Previously, I found the `/robots.txt` file & `/briefingnotes.txt` file, which I can attempt to access to see what information is there:
+
+   `/robots.txt`:
+   ```
+   User-agent: *
+   Disallow: /briefingnotes.txt
+   ```
+
    
-10) Since the webpage seems to be normal & we knew that only 2 ports were open, I decided to try Directory Brute-forcing using the application [Dirbuster](https://www.kali.org/tools/dirbuster/). First, I filled in the type `https://potatos.potato-school.com` in the _Target URL_ field, ticked the checkbox _Go Faster_, used the wordlist _/usr/share/wordlists/Discovery/Web-Content/common.txt_, and pressed `Start`.
+11) Since the webpage seems to be normal & we knew that only 2 ports were open, I decided to try Directory Brute-forcing using the application [Dirbuster](https://www.kali.org/tools/dirbuster/). First, I filled in the type `https://potatos.potato-school.com` in the _Target URL_ field, ticked the checkbox _Go Faster_, used the wordlist _/usr/share/wordlists/Discovery/Web-Content/common.txt_, and pressed `Start`.
 
    ![Dirbuster Application Interface](Images/Dirbuster_Application_Interface.png)
    
