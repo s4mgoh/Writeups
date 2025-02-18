@@ -143,7 +143,15 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
    User-agent: *
    Disallow: /briefingnotes.txt
    ```
+   `/briefingnotes.txt`:
+   ```
+   do remember to inform staff of the following:
+   attached encrypted file contains shared staff account credentials.
+   the file is encrypted in XOR forma
+   the password of the file will be the date of the School's Anniversary in DD/MM/YYYY format
+   ```
 
+   I will keep the information stated in the `/briefingnotes.txt` file in the back of my mind for now.
    
 11) Since the webpage seems to be normal & we knew that only 2 ports were open, I decided to try Directory Brute-forcing using the application [Dirbuster](https://www.kali.org/tools/dirbuster/). First, I filled in the type `https://potatos.potato-school.com` in the _Target URL_ field, ticked the checkbox _Go Faster_, used the wordlist _/usr/share/wordlists/Discovery/Web-Content/common.txt_, and pressed `Start`.
 
