@@ -205,4 +205,11 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
     Now that I have the password of Eunchae's account, I attempted to login into RoundCube Webmail with Eunchae credentials.
 
-16) 
+16) Logging into Eunchae's account, the following 2 emails stood out the most, one stating the URL of the new dashboard (website) & the other stating that class would be cancelled due to the school's 18th anniversary.
+
+    ![Roundcube_Webmail_New_Dashboard_Email](Images/Roundcube_Webmail_New_Dashboard_Email.png)
+    ![Roundcube_Webmail_Class_Cancellation_Email](Images/Roundcube_Webmail_Class_Cancellation_Email.png)
+
+    If we recall previously, it was stated in the `/briefingnotes.txt` that the password for a file is the school's anniversary date in DD/MM/YYYY format. With the email, we can deduce that the school's anniversary date is _12/11/2006_.
+
+18) 
