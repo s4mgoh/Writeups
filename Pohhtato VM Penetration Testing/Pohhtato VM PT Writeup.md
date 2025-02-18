@@ -147,19 +147,19 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
    
 11) Since the webpage seems to be normal & we knew that only 2 ports were open, I decided to try Directory Brute-forcing using the application [Dirbuster](https://www.kali.org/tools/dirbuster/). First, I filled in the type `https://potatos.potato-school.com` in the _Target URL_ field, ticked the checkbox _Go Faster_, used the wordlist _/usr/share/wordlists/Discovery/Web-Content/common.txt_, and pressed `Start`.
 
-   ![Dirbuster Application Interface](Images/Dirbuster_Application_Interface.png)
+    ![Dirbuster Application Interface](Images/Dirbuster_Application_Interface.png)
    
 11) Upon completion of the brute-force, we received the following results when navigating to the `Results - List View: Dirs: XX Files: XX`, we can see the followwing directories & files that gave a HTTP response code of 200: The root directory `/` & the file `/login.php`.
 
-   ![Dirbuster_Application_Scan_Result](Images/Dirbuster_Application_Scan_Result.png)
+    ![Dirbuster_Application_Scan_Result](Images/Dirbuster_Application_Scan_Result.png)
 
 12) Since we can see that `/login.php` gave a HTTP response code of 200, I decided to access the page which showed a simple `Student Login` page. Since the webpage showed a simple login page, I decided to use a simple attack method: [SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection), and inserted `' OR 1 = 1 #` into the `Name` field & a random character in the `Password` field.
 
-   ![HTTPS_potatos.potato-school.com_login.php](Images/HTTPS_potatos.potato-school.com_login.php.png)
+    ![HTTPS_potatos.potato-school.com_login.php](Images/HTTPS_potatos.potato-school.com_login.php.png)
 
-   Successful [SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection) into `Student Login` webpage:
+    Successful [SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection) into `Student Login` webpage:
    
-   ![HTTPS_potatos.potato-school.com_Student_Login_SQL_Injection_Success](Images/HTTPS_potatos.potato-school.com_Student_Login_SQL_Injection_Success.png)
+    ![HTTPS_potatos.potato-school.com_Student_Login_SQL_Injection_Success](Images/HTTPS_potatos.potato-school.com_Student_Login_SQL_Injection_Success.png)
 
 13) With the successful [SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection), we can see that we are logged in as `Malcolm`, with his personal data such as his class `CY2304U` & email `malcolm@potato-school.com`. Also, we can see various learning resources but are unable to access them (We will keep them in mind for now):
 
@@ -169,12 +169,12 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
     - `Chapter 4: Privilege Escalation`
     - `Chapter 5: Port Knocking`
 
-   Lastly, we can see a hyperlink in the webpage `Roundcube Webmail`, which opens a web mail application.
+    Lastly, we can see a hyperlink in the webpage `Roundcube Webmail`, which opens a web mail application.
 
-   ![Roundcube_Webmail_Login_Page](Images/Roundcube_Webmail_Login_Page.png)
+    ![Roundcube_Webmail_Login_Page](Images/Roundcube_Webmail_Login_Page.png)
 
-   Since I managed to access `Malcolm`'s account, but am unable to access any accounts with invalid credentials, I assumed that there could be a database in the backend.
+    Since I managed to access `Malcolm`'s account, but am unable to access any accounts with invalid credentials, I assumed that there could be a database in the backend.
 
-14) Using [SQLMap](https://github.com/sqlmapproject/sqlmap) to enumerate data from the database, I received the following output:
+15) Using [SQLMap](https://github.com/sqlmapproject/sqlmap) to enumerate data from the database, I received the following output:
 
-   ![SQLMap_Output_1](Images/SQLMap_Output_1.png)
+    ![SQLMap_Output_1](Images/SQLMap_Output_1.png)
