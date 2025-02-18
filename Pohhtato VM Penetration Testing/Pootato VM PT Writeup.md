@@ -1,4 +1,4 @@
-# Pohhtato Virtual Machine (VM) Penetration Testing (PT)
+# Pootato Virtual Machine (VM) Penetration Testing (PT)
 
 Huge Thanks & Credits to my seniors at [Custodio Technologies](https://www.custodiotech.com.sg/) who created the VM (Charles & W.L)
 
@@ -10,10 +10,10 @@ I will be using [Kali Linux](https://www.kali.org/) on [VMware Workstation Pro](
 
 
 ## Step 1 (Setting Up)
-Ensuring that my [Kali Linux](https://www.kali.org/) (Attacking Machine) & the Pohhtato VM (Target Machine) are on the same network.
+Ensuring that my [Kali Linux](https://www.kali.org/) (Attacking Machine) & the Pootato VM (Target Machine) are on the same network.
 
 ## Step 2 (Reconnaissance)
-Powering on Pohhtato VM shows us that it is using Debian, and two user accounts are available for usage, ***cabbage*** & ***potato-helpdesk***.
+Powering on Pootato VM shows us that it is using Debian, and two user accounts are available for usage, ***cabbage*** & ***potato-helpdesk***.
 
 ![Debian_Login_Page](Images/Debian_Login_Page.png)
 
@@ -25,9 +25,9 @@ While I won't be implementing all the steps in the Cyber Kill Chain, I will be f
 
 I will start by using [Metasploit Framework](https://github.com/rapid7/metasploit-framework) so that I can automatically have the output of my [NMAP](https://github.com/nmap/nmap) scans saved into the database.
 
-1) Creating my Pohhtato Workspace in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `workspace add Pohhtato`.
-2) Navigating to my Pohhtato Workspace in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `workspace Pohhtato`.
-3) Identifying the IP address of the Pohhtato VM by scanning the network `ip a` followed by `nmap 192.168.233.0/24`, which gave the following result:
+1) Creating my Pootato Workspace in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `workspace add Pohhtato`.
+2) Navigating to my Pootato Workspace in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `workspace Pohhtato`.
+3) Identifying the IP address of the Pootato VM by scanning the network `ip a` followed by `nmap 192.168.233.0/24`, which gave the following result:
 
    ```
    Nmap scan report for potatos.potato-school.com (192.168.233.135)
@@ -113,7 +113,7 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
    [*] Nmap: | No findings
    ```
 
-7) Since there aren't any vulnerabilities in the output of the scan, I decided to use a web browser ([Mozilla](https://github.com/mozilla)) & access the website of the Pohhtato VM since we saw that both HTTP & HTTPS ports were open alongside the word "Apache", by typing the IP address of the Pohhtato VM in the URL bar `192.168.233.135`:
+7) Since there aren't any vulnerabilities in the output of the scan, I decided to use a web browser ([Mozilla](https://github.com/mozilla)) & access the website of the Pootato VM since we saw that both HTTP & HTTPS ports were open alongside the word "Apache", by typing the IP address of the Pohhtato VM in the URL bar `192.168.233.135`:
 
    ![HTTP_192.168.233.135_Access](Images/HTTP_192.168.233.135_Access.png)
 
