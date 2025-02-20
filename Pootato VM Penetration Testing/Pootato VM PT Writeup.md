@@ -399,4 +399,9 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
     This meant that the file `Encrypted_Attachment.dat` is encrypted in XOR format, and that the password to decrypt the file is _12/11/2006_ which was deduced from the email in Roundcube Webmail. Using [CyberChef](https://gchq.github.io/CyberChef) & selecting the XOR _recipe_ with _12/11/2006_ as the key, the output given was:
 
-     
+    ```
+    Username : Shared_Account
+    Password : p0tat0-sch00l-d4-b3stSu
+    ```
+
+    
