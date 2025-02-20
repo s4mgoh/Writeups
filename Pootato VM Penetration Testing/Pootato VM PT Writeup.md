@@ -410,4 +410,4 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
     ![Staff_Account_Login_New_Dashboard](Images/Staff_Account_Login_New_Dashboard.png)
 
-    
+    Upon successful login, I did some exploration & found that the 
