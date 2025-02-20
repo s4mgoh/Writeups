@@ -401,7 +401,13 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
     ```
     Username : Shared_Account
-    Password : p0tat0-sch00l-d4-b3stSu
+    Password : p0tat0-sch00l-d4-b3st
     ```
+
+    ![CyberChef_Output](Images/CyberChef_Output.png)
+
+24) With the Username `Shared_Account` & Password `p0tat0-sch00l-d4-b3st`, I decided to head back to the New Dashboard `https://potatos.potato-school.com/new_dashboard/login.php` & login with those credentials & was successful.
+
+    ![Staff_Account_Login_New_Dashboard](Images/Staff_Account_Login_New_Dashboard.png)
 
     
