@@ -2,7 +2,7 @@
 
 Huge Thanks & Credits to my senior at [Custodio Technologies](https://www.custodiotech.com.sg/) who created the VM ([hongecc](https://github.com/hongecc))
 
-VM file link: https://drive.google.com/file/d/
+VM file link: https://drive.google.com/file/d/19pDwTe_qEJr2y3Jow0lt3HVToY7rqcbM/view?usp=sharing
 
 _Note: This is my first time, bare with me please._
 
