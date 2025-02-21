@@ -25,8 +25,8 @@ While I won't be implementing all the steps in the Cyber Kill Chain, I will be f
 
 I will start by using [Metasploit Framework](https://github.com/rapid7/metasploit-framework) so that I can automatically have the output of my [NMAP](https://github.com/nmap/nmap) scans saved into the database.
 
-1) Creating my Pootato Workspace in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `workspace add Pohhtato`.
-2) Navigating to my Pootato Workspace in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `workspace Pohhtato`.
+1) Creating my Pootato Workspace in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `workspace add Pootato`.
+2) Navigating to my Pootato Workspace in [Metasploit Framework](https://github.com/rapid7/metasploit-framework) `workspace Pootato`.
 3) Identifying the IP address of the Pootato VM by scanning the network `ip a` followed by `nmap 192.168.233.0/24`, which gave the following result:
 
    ```
