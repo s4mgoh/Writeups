@@ -1,6 +1,6 @@
 # Pootato Virtual Machine (VM) Penetration Testing (PT)
 
-Huge Thanks & Credits to my seniors at [Custodio Technologies](https://www.custodiotech.com.sg/) who created the VM (Charles & W.L)
+Huge Thanks & Credits to my senior at [Custodio Technologies](https://www.custodiotech.com.sg/) who created the VM ([hongecc](https://github.com/hongecc))
 
 VM file link: https://drive.google.com/file/d/
 
