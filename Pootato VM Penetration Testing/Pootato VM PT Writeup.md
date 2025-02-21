@@ -12,7 +12,7 @@ I will be using [Kali Linux](https://www.kali.org/) on [VMware Workstation Pro](
 ## Setting Up
 Ensuring that my [Kali Linux](https://www.kali.org/) (Attacking Machine) & the Pootato VM (Target Machine) are on the same network.
 
-## Reconnaissance & Exploitation
+## Fun Time!
 Powering on Pootato VM shows us that it is using Debian, and two user accounts are available for usage, ***cabbage*** & ***potato-helpdesk***.
 
 ![Debian_Login_Page](Images/Debian_Login_Page.png)
