@@ -1,4 +1,4 @@
-# Pootato Virtual Machine (VM) Penetration Testing (PT)
+# Pootato Virtual Machine (VM)
 
 Huge Thanks & Credits to my senior at [Custodio Technologies](https://www.custodiotech.com.sg/) who created the VM ([hongecc](https://github.com/hongecc))
 
