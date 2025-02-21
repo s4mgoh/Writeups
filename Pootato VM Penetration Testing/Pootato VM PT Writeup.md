@@ -410,4 +410,12 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
 
     ![Staff_Account_Login_New_Dashboard](Images/Staff_Account_Login_New_Dashboard.png)
 
-    Upon successful login, I did some exploration & found that the 
+    Upon successful login, I did some exploration & found that when clicking the button `Search` in the `Home` tab after typing some random letters such as the letter "a", the URL showed the following:
+
+    `https://potatos.potato-school.com/new_dashboard/staff_dashboard.php?query=a`
+
+    Additionally, the output also showed files that had the letter "a" included inside.
+
+    ![Staff_Dashboard_Search_Field](Images/Staff_Dashboard_Search_Field.png)
+
+    
