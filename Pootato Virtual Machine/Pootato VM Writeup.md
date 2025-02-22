@@ -127,7 +127,7 @@ I will start by using [Metasploit Framework](https://github.com/rapid7/metasploi
    ![Server_Not_Found](Images/Server_Not_Found.png)
    ![HTTPS_potatos.potato-school.com_ACCESS](Images/HTTPS_potatos.potato-school.com_ACCESS.png)
 
-   Previously, I found the `/robots.txt` file & `/briefingnotes.txt` file, which I can attempt to access to see what information is there:
+   Previously, I found the `/robots.txt` file & `/briefingnotes.txt` file, which I attempted to access to see what information is there:
 
    `/robots.txt`:
    ```
